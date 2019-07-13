@@ -48,8 +48,8 @@
         /* キャラクターデータのテキストの設定 */
         #combatantTableBody * {
             /*color: #E2EBF5;*/
-            color: #FFC0CB;
             /*text-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;*/
+            color: #FFC0CB;
             text-shadow: -1px 0 3px #E75480, 0 1px 3px #E75480, 1px 0 3px #E75480, 0 -1px 3px #E75480;
             font-weight: 300;
 
@@ -63,8 +63,8 @@
         #encounter,
         #combatantTableHeader * {
             /*color: #DED7BE;*/
-            color: #FFC0CB;
             /*text-shadow: -1px 0 2px #795516, 0 1px 2px #795516, 1px 0 2px #795516, 0 -1px 2px #795516;*/
+            color: #FFC0CB;
             text-shadow: -1px 0 2px #E75480, 0 1px 2px #E75480, 1px 0 2px #E75480, 0 -1px 2px #E75480;
             font-weight: 300;
             white-space: nowrap;
@@ -102,7 +102,7 @@
         //
 
         // エンカウント情報の定義
-        var encounterDefine = "Time: {duration} / Total DPS: {ENCDPS}";
+        var encounterDefine = "Time: {duration} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total DPS: {ENCDPS}";
 
         // 上記のエンカウント情報を HTML として扱うなら true
         var useHTMLEncounterDefine = false;
@@ -242,64 +242,6 @@
 
             table.tHead = tableHeader;
         }
-
-        // プレイヤーリストを更新する
-        // function updateCombatantList(data) {
-        //     // 要素取得＆作成
-        //     var table = document.getElementById('combatantTable');
-        //     var oldTableBody = table.tBodies.namedItem('combatantTableBody');
-        //     var newTableBody = document.createElement("tbody");
-        //     newTableBody.id = "combatantTableBody";
-
-        //     // tbody の内容を作成
-        //     var combatantIndex = 0;
-        //     for (var combatantName in data.Combatant) {
-        //         var combatant = data.Combatant[combatantName];
-        //         var tableRow = newTableBody.insertRow(newTableBody.rows.length);
-        //         for (var i = 0; i < bodyDefine.length; i++)
-        //         {
-        //             var cell = tableRow.insertCell(i);
-        //             // テキスト設定
-        //             if (typeof bodyDefine[i].text !== 'undefined') {
-        //                 var cellText;
-        //                 if (typeof bodyDefine[i].text === 'function') {
-        //                     cellText = bodyDefine[i].text(combatant, combatantIndex);
-        //                 } else {
-        //                     cellText = parseActFormat(bodyDefine[i].text, combatant);
-        //                 }
-        //                 cell.innerText = cellText;
-        //             } else if (typeof bodyDefine[i].html !== 'undefined') {
-        //                 var cellHTML;
-        //                 if (typeof bodyDefine[i].html === 'function') {
-        //                     cellHTML = bodyDefine[i].html(combatant, combatantIndex);
-        //                 } else {
-        //                     cellHTML = parseActFormat(bodyDefine[i].html, combatant);
-        //                 }
-        //                 cell.innerHTML = cellHTML;
-        //             }
-        //             // 幅設定
-        //             cell.style.width = bodyDefine[i].width;
-        //             cell.style.maxWidth = bodyDefine[i].width;
-        //             // 行構え設定
-        //             if (typeof(bodyDefine[i].align) !== 'undefined') {
-        //                 cell.style.textAlign = bodyDefine[i].align;
-        //             }
-        //             // エフェクト実行
-        //             if (typeof bodyDefine[i].effect === 'function') {
-        //                 bodyDefine[i].effect(cell, combatant, combatantIndex);
-        //             }
-        //         }
-        //         combatantIndex++;
-        //     }
-
-        //     // tbody が既に存在していたら置換、そうでないならテーブルに追加
-        //     if (oldTableBody != void(0)) {
-        //         table.replaceChild(newTableBody, oldTableBody);
-        //     }
-        //     else {
-        //         table.appendChild(newTableBody);
-        //     }
-        // }
 
         function updateCombatantList(data) {
             // 要素取得＆作成
