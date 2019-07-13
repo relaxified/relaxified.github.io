@@ -101,7 +101,7 @@
         //
 
         // エンカウント情報の定義
-        var encounterDefine = "Time: {duration}  Total DPS: {ENCDPS}";
+        var encounterDefine = "Time: {duration} / Total DPS: {ENCDPS}";
 
         // 上記のエンカウント情報を HTML として扱うなら true
         var useHTMLEncounterDefine = false;
@@ -111,8 +111,8 @@
         [
             //{ text: "#", width: "5%", align: "center" },
             { text: "Job", width: "8%", align: "center" },
-            { text: "Name", width: "20%", align: "center" },
-            { text: "DPS", width: "5%", align: "center" },
+            { text: "Name", width: "10%", align: "center" },
+            { text: "DPS", width: "10%", align: "center" },
             { text: "Crit", width: "5%", align: "center"},
             { text: "DH", width: "5%", align: "center" },
             { text: "CDH", width: "5%", align: "center"},
@@ -123,8 +123,8 @@
         [
             //{ text: rankingText, width: "5%", align: "center", effect: deadYatsuEffect },
             { html: "<img src='./images/glow/{JobOrName}.png' onerror='$(this).attr(\"src\", \"./images/error.png\");' style='width=60%;height:60%;' />", align: "center"},
-            { text: "{name}", width: "20%" },
-            { text: "{encdps}", width: "5%", align: "center" },
+            { text: "{name}", width: "10%" },
+            { text: "{encdps}", width: "10%", align: "center" },
             { text: "{crithit%}", width: "5%", align: "center" },
             { text: "{DirectHitPct}", width: "5%", align: "center" },
             { text: "{CritDirectHitPct}", width: "5%", align: "center" },
