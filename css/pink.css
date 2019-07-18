@@ -1,0 +1,58 @@
+* {
+    /*font-family: "Arial";*/
+    font-size: 12px;
+}
+
+body, html {
+    margin: 0;
+}
+
+html {
+    background-image: url(images/handle.png);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    height: 100%;
+
+    /*border: 1px solid rgba(0,0,0,0.1);*/
+    overflow: hidden;
+
+    background-color: transparent;
+}
+
+#healingTable,
+#combatantTable {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+#healingTableBody *,
+#combatantTableBody * {
+    /*color: #E2EBF5;*/
+    /*text-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;*/
+    color: #FFC0CB;
+    text-shadow: -1px 0 3px #E75480, 0 1px 3px #E75480, 1px 0 3px #E75480, 0 -1px 3px #E75480;
+    font-weight: 300;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#encounter,
+#healingTableHeader *,
+#combatantTableHeader * {
+    /*color: #DED7BE;*/
+    /*text-shadow: -1px 0 2px #795516, 0 1px 2px #795516, 1px 0 2px #795516, 0 -1px 2px #795516;*/
+    color: #FFC0CB;
+    text-shadow: -1px 0 2px #E75480, 0 1px 2px #E75480, 1px 0 2px #E75480, 0 -1px 2px #E75480;
+    font-weight: 300;
+    white-space: nowrap;
+}
+
+#healingTableHeader tr,
+#combatantTableHeader tr {
+    /*border-bottom: 1px solid #DED7BE;*/
+    border-bottom: 1px solid #FFC0CB;
+}
