@@ -1,5 +1,5 @@
 // Encounter header
-var encounterDefine = "Time: {duration} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total DPS: {ENCDPS}";
+var encounterDefine = "Time: {duration} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total DPS: {ENCDPS} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 <span id=\"hpstoggle\" onClick=\"toggleHPS()\" style=\"display: none;\">Toggle HPS</span>";
 
 // Allows HTML use in encounter
 var useHTMLEncounterDefine = true;
@@ -66,11 +66,14 @@ function deadYatsuEffect(cell, combatant, index) {
 function toggleHPS() {
     if (enableHealerTable == false) {
         enableHealerTable = true;
+        document.getElementById("healingTable").style.display = "initial";
+        document.getElementById("hpstoggle").style.color = "#FFC0CB";
     }
     else {
         enableHealerTable = false;
+        document.getElementById("healingTable").style.display = "none";
+        document.getElementById("hpstoggle").style.color = "white";
     }
-    console.log(enableHealerTable);
 }
 
 document.addEventListener("onOverlayDataUpdate", function (e) {
@@ -143,32 +146,30 @@ function updateCombatantListHeader() {
     table.tHead = tableHeader;
 
     // Healing table header
-    if (enableHealerTable != false) {
-        var healingTable = document.getElementById('healingTable');
-        var healingTableHeader = document.createElement("thead");
-        healingTableHeader.id = "healingTableHeader";
-        var healingHeaderRow = healingTableHeader.insertRow();
+    var healingTable = document.getElementById('healingTable');
+    var healingTableHeader = document.createElement("thead");
+    healingTableHeader.id = "healingTableHeader";
+    var healingHeaderRow = healingTableHeader.insertRow();
 
-        for (var i = 0; i < healingHeaderDefine.length; i++) {
-            var healingCell = document.createElement("th");
-            if (typeof healingHeaderDefine[i].text !== 'undefined') {
-                healingCell.innerText = healingHeaderDefine[i].text;
-            } else if (typeof healingHeaderDefine[i].html !== 'undefined') {
-                healingCell.innerHTML = healingHeaderDefine[i].html;
-            }
-            healingCell.style.width = healingHeaderDefine[i].width;
-            healingCell.style.maxWidth = healingHeaderDefine[i].width;
-            if (typeof healingHeaderDefine[i].span !== 'undefined') {
-                healingCell.colSpan = healingHeaderDefine[i].span;
-            }
-            if (typeof healingHeaderDefine[i].align !== 'undefined') {
-                healingCell.style["textAlign"] = healingHeaderDefine[i].align;
-            }
-            healingHeaderRow.appendChild(healingCell);
+    for (var i = 0; i < healingHeaderDefine.length; i++) {
+        var healingCell = document.createElement("th");
+        if (typeof healingHeaderDefine[i].text !== 'undefined') {
+            healingCell.innerText = healingHeaderDefine[i].text;
+        } else if (typeof healingHeaderDefine[i].html !== 'undefined') {
+            healingCell.innerHTML = healingHeaderDefine[i].html;
         }
-
-        healingTable.tHead = healingTableHeader;
+        healingCell.style.width = healingHeaderDefine[i].width;
+        healingCell.style.maxWidth = healingHeaderDefine[i].width;
+        if (typeof healingHeaderDefine[i].span !== 'undefined') {
+            healingCell.colSpan = healingHeaderDefine[i].span;
+        }
+        if (typeof healingHeaderDefine[i].align !== 'undefined') {
+            healingCell.style["textAlign"] = healingHeaderDefine[i].align;
+        }
+        healingHeaderRow.appendChild(healingCell);
     }
+
+    healingTable.tHead = healingTableHeader;
 }
 
 // Update combatant body data
@@ -207,41 +208,6 @@ function updateCombatantList(data) {
         else if (combatant.JobOrName.indexOf(" (") != -1) {
             combatant.JobOrName = "choco";
         }
-        
-        if (combatantName == "YOU") {
-            combatant.JobOrName = "puppo_32";
-        }
-
-        // Damage table
-        var tableRow = newTableBody.insertRow(newTableBody.rows.length);
-        for (var i = 0; i < bodyDefine.length; i++) {
-            var cell = tableRow.insertCell(i);
-            if (typeof bodyDefine[i].text !== 'undefined') {
-                var cellText;
-                if (typeof bodyDefine[i].text === 'function') {
-                    cellText = bodyDefine[i].text(combatant, combatantIndex);
-                } else {
-                    cellText = parseActFormat(bodyDefine[i].text, combatant);
-                }
-                cell.innerText = cellText;
-            } else if (typeof bodyDefine[i].html !== 'undefined') {
-                var cellHTML;
-                if (typeof bodyDefine[i].html === 'function') {
-                    cellHTML = bodyDefine[i].html(combatant, combatantIndex);
-                } else {
-                    cellHTML = parseActFormat(bodyDefine[i].html, combatant);
-                }
-                cell.innerHTML = cellHTML;
-            }
-            cell.style.width = bodyDefine[i].width;
-            cell.style.maxWidth = bodyDefine[i].width;
-            if (typeof (bodyDefine[i].align) !== 'undefined') {
-                cell.style.textAlign = bodyDefine[i].align;
-            }
-            if (typeof bodyDefine[i].effect === 'function') {
-                bodyDefine[i].effect(cell, combatant, combatantIndex);
-            }
-        }
 
         // Healing table
         switch (combatant.JobOrName) {
@@ -249,6 +215,10 @@ function updateCombatantList(data) {
             case "whm":
             case "sch":
             case "ast":
+                // Cute icon :3
+                if (combatantName == "YOU") {
+                    combatant.JobOrName = "puppo_32";
+                }
                 var healingTableRow = newHealingTableBody.insertRow(newHealingTableBody.rows.length);
                 for (var i = 0; i < healingBodyDefine.length; i++) {
                     var healingCell = healingTableRow.insertCell(i);
@@ -280,9 +250,51 @@ function updateCombatantList(data) {
                 }
                 healerIndex++;
             default:
-                break;
+                // Cute icon :3
+                if (combatantName == "YOU") {
+                    combatant.JobOrName = "puppo_32";
+                }
+                // Damage table
+                var tableRow = newTableBody.insertRow(newTableBody.rows.length);
+                for (var i = 0; i < bodyDefine.length; i++) {
+                    var cell = tableRow.insertCell(i);
+                    if (typeof bodyDefine[i].text !== 'undefined') {
+                        var cellText;
+                        if (typeof bodyDefine[i].text === 'function') {
+                            cellText = bodyDefine[i].text(combatant, combatantIndex);
+                        } else {
+                            cellText = parseActFormat(bodyDefine[i].text, combatant);
+                        }
+                        cell.innerText = cellText;
+                    } else if (typeof bodyDefine[i].html !== 'undefined') {
+                        var cellHTML;
+                        if (typeof bodyDefine[i].html === 'function') {
+                            cellHTML = bodyDefine[i].html(combatant, combatantIndex);
+                        } else {
+                            cellHTML = parseActFormat(bodyDefine[i].html, combatant);
+                        }
+                        cell.innerHTML = cellHTML;
+                    }
+                    cell.style.width = bodyDefine[i].width;
+                    cell.style.maxWidth = bodyDefine[i].width;
+                    if (typeof (bodyDefine[i].align) !== 'undefined') {
+                        cell.style.textAlign = bodyDefine[i].align;
+                    }
+                    if (typeof bodyDefine[i].effect === 'function') {
+                        bodyDefine[i].effect(cell, combatant, combatantIndex);
+                    }
+                }
         }
         combatantIndex++;
+    }
+
+    if (enableHealerTable != false) {
+        document.getElementById("healingTable").style.display = "initial";
+        document.getElementById("hpstoggle").style.color = "#FFC0CB";
+    }
+    else {
+        document.getElementById("healingTable").style.display = "none";
+        document.getElementById("hpstoggle").style.color = "white";
     }
 
     if (oldTableBody != void (0)) {
@@ -292,13 +304,11 @@ function updateCombatantList(data) {
         table.appendChild(newTableBody);
     }
 
-    if (enableHealerTable != false) {
-        if (oldHealingTableBody != void (0)) {
-            healingTable.replaceChild(newHealingTableBody, oldHealingTableBody);
-        }
-        else {
-            healingTable.appendChild(newHealingTableBody);
-        }
+    if (oldHealingTableBody != void (0)) {
+        healingTable.replaceChild(newHealingTableBody, oldHealingTableBody);
+    }
+    else {
+        healingTable.appendChild(newHealingTableBody);
     }
 }
 

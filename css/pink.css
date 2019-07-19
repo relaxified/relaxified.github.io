@@ -56,3 +56,7 @@ html {
     /*border-bottom: 1px solid #DED7BE;*/
     border-bottom: 1px solid #FFC0CB;
 }
+
+#hpstoggle {
+    color: #FFC0CB;
+}
