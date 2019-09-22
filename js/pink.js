@@ -1,5 +1,5 @@
 // Encounter header
-var encounterDefine = "Time: {duration} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total DPS: {ENCDPS} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 <span id=\"hpstoggle\" onClick=\"toggleHPS()\" style=\"display: none;\">Toggle HPS</span>";
+var encounterDefine = "Time: {duration} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total DPS: {ENCDPS} \xa0\xa0\xa0\xa0\xa0\xa0\xa0 <span id=\"hpstoggle\" class=\"fas fa-ad\" onClick=\"toggleHPS()\" style=\"display: none;\">&#9881</span>";
 
 // Allows HTML use in encounter
 var useHTMLEncounterDefine = true;
@@ -215,6 +215,7 @@ function updateCombatantList(data) {
             case "whm":
             case "sch":
             case "ast":
+
                 // Cute icon :3
                 if (combatantName == "YOU") {
                     combatant.JobOrName = "puppo_32";
@@ -249,7 +250,9 @@ function updateCombatantList(data) {
                     }
                 }
                 healerIndex++;
+
             default:
+            
                 // Cute icon :3
                 if (combatantName == "YOU") {
                     combatant.JobOrName = "puppo_32";
