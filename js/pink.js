@@ -23,7 +23,7 @@ var headerDefine =
 var bodyDefine =
 [
     // { text: rankingText, width: "5%", align: "center", effect: deadYatsuEffect },
-    { html: "<img src='./images/glow_default/{JobOrName}.png' onerror='this.src=\"./images/error.png\"' style='width=30%;height:30%;' />", align: "center" },
+    { html: "<img src='./images/glow/{JobOrName}.png' onerror='this.src=\"./images/error.png\"' style='width=30%;height:30%;' />", align: "center" },
     { text: "{name}", width: "20%", align: "left" },
     { text: "{encdps}", width: "10%", align: "center" },
     { text: "{crithit%}", width: "5%", align: "center" },
@@ -215,11 +215,12 @@ function updateCombatantList(data) {
             case "whm":
             case "sch":
             case "ast":
+            case "sge":
 
                 // Cute icon :3
-                if (combatantName == "YOU") {
-                    combatant.JobOrName = "puppo_32";
-                }
+                // if (combatantName == "YOU") {
+                //     combatant.JobOrName = "puppo_32";
+                // }
                 var healingTableRow = newHealingTableBody.insertRow(newHealingTableBody.rows.length);
                 for (var i = 0; i < healingBodyDefine.length; i++) {
                     var healingCell = healingTableRow.insertCell(i);
@@ -254,9 +255,9 @@ function updateCombatantList(data) {
             default:
             
                 // Cute icon :3
-                if (combatantName == "YOU") {
-                    combatant.JobOrName = "puppo_32";
-                }
+                // if (combatantName == "YOU") {
+                //     combatant.JobOrName = "puppo_32";
+                // }
                 // Damage table
                 var tableRow = newTableBody.insertRow(newTableBody.rows.length);
                 for (var i = 0; i < bodyDefine.length; i++) {
