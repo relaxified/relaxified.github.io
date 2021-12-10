@@ -44,7 +44,7 @@ var healingHeaderDefine =
 // Healing body data
 var healingBodyDefine =
 [
-    { html: "<img src='./images/glow/{JobOrName}.png' onerror='this.src=\"./images/error.png\"' style='width=60%;height:60%;' />", align: "center" },
+    { html: "<img src='./images/glow/{JobOrName}.png' onerror='this.src=\"./images/error.png\"' style='width=30%;height:30%;' />", align: "center" },
     { text: "{name}", width: "20%", align: "left" },
     { text: "{enchps}", width: "10%", align: "center" },
     { text: "{healed%}", width: "5%", align: "center" },
