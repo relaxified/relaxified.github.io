@@ -23,7 +23,7 @@ var headerDefine =
 var bodyDefine =
 [
     // { text: rankingText, width: "5%", align: "center", effect: deadYatsuEffect },
-    { html: "<img src='./images/glow/{JobOrName}.png' onerror='this.src=\"./images/error.png\"' style='width=30%;height:30%;' />", align: "center" },
+    { html: "<img src='./images/glow_default/{JobOrName}.png' onerror='this.src=\"./images/error.png\"' style='width=30%;height:30%;' />", align: "center" },
     { text: "{name}", width: "20%", align: "left" },
     { text: "{encdps}", width: "10%", align: "center" },
     { text: "{crithit%}", width: "5%", align: "center" },
